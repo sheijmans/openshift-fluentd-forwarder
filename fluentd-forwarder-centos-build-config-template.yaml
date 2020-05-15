@@ -18,7 +18,7 @@ objects:
     tags:
       - name: latest
         annotations:
-          openshift.io/imported-from: docker.io/centos:7
+          openshift.io/imported-from: docker.io/centos/ruby-24-centos7
         from:
           kind: DockerImage
           name: docker.io/centos:7
