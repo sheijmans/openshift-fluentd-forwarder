@@ -13,7 +13,7 @@ YUM_ARGS="--setopt=tsflags=nodocs"
 PACKAGES="gem gcc-c++ libcurl-devel make bc gettext nss_wrapper hostname iproute"
 
 # ruby packages
-PACKAGES="${PACKAGES} rh-ruby22 rh-ruby22-rubygems rh-ruby22-ruby-devel"
+PACKAGES="${PACKAGES} rh-ruby23 rh-ruby23-rubygems rh-ruby23-ruby-devel"
 
 # if the release is a red hat version then we need to set additional arguments for yum repositories
 RED_HAT_MATCH='^Red Hat.*$'
@@ -27,21 +27,21 @@ fi
 
 # enable epel when on CentOS
 CENTOS_MATCH='^CentOS.*'
-if [[ $RELEASE =~ $CENTOS_MATCH && -z "$USE_SYSTEM_REPOS" ]]; then
-  rpmkeys --import file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-  yum install -y epel-release centos-release-scl-rh centos-release-scl 
-fi
+###if [[ $RELEASE =~ $CENTOS_MATCH && -z "$USE_SYSTEM_REPOS" ]]; then
+###  rpmkeys --import file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+###  yum install -y epel-release centos-release-scl-rh
+###fi
 
 # ensure latest versions
-yum update $YUM_ARGS -y
+###yum update $YUM_ARGS -y
 
 # install all required packages
-yum install -y $YUM_ARGS $PACKAGES
+###yum install -y $YUM_ARGS $PACKAGES
 
 # clean up yum to make sure image isn't larger because of installations/updates
-yum clean all
-rm -rf /var/cache/yum/*
-rm -rf /var/lib/yum/*
+###yum clean all
+###rm -rf /var/cache/yum/*
+###rm -rf /var/lib/yum/*
 
 # set home directory
 mkdir -p ${HOME} && \
